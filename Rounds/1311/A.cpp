@@ -4,42 +4,34 @@ using namespace std;
 
 typedef long long int ll;
 
-bool exist(int p[], int n, int x) {
-	for (int i = 0; i < n; i++) {
-		if (p[i] == x)
-			return true;
-	}
-	return false;
-}
-
-bool solve(int a[], int n, int p[], int m) {
-	for (int i = 0; i < n; i++) {
-		for (int j = 0; j + 1 < n; j++) {
-			if (a[j] > a[j + 1]) {
-				// cout << j << " " << j + 1 << "\n";
-				if (exist(p, m, j))
-					swap(a[j], a[j + 1]);
-				else
-					return false;
-			}
-		}
-	}
-	return true;
-}
-
 int main() {
 	optimizar_io
-	int tc, n, m, a[105], p[105];
+    int tc, a, b;
 
 	cin >> tc;
 	while (tc--) {
-		cin >> n >> m;
-		for (int i = 0; i < n; i++) cin >> a[i];
-		for (int i = 0; i < m; i++) {
-			cin >> p[i];
-			p[i]--;
+		cin >> a >> b;
+		if (a < b) {
+			int diff = b - a;
+			if (diff & 1) {
+				cout << "1\n";
+			}
+			else {
+				cout << "2\n";	
+			}
 		}
-		cout << (solve(a, n, p, m) ? "YES\n": "NO\n");		
+		else if (a > b) {
+			int diff = a - b;
+			if (diff & 1) {
+				cout << "2\n";
+			}
+			else {
+				cout << "1\n";	
+			}
+		}
+		else {
+			cout << "0\n";
+		}
 	}
 	return 0;
 }
